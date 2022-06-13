@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/slider_css.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="wrapper-active-image">
+                <div >
+                    <img class="active-image" src="./image/1.jpg" alt="">
+                </div>
+                <div class="buttons">
+                    <div class="btn btn-back" > 
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </div>
+                    <div class="btn btn-forward">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-images">
+                <div class="wrapper-image">
+                    <img id="1" class="image" src="./image/1.jpg" alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="2" class="image" src="./image/2.jpg" alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="3" class="image" src="./image/3.jpg" alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="4" class="image" src="./image/4.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="5" class="image" src="./image/5.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="6" class="image" src="./image/6.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="7" class="image" src="./image/7.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="8" class="image" src="./image/8.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="9" class="image" src="./image/9.jpg"  alt="">
+                </div>
+                <div class="wrapper-image">
+                    <img id="10" class="image" src="./image/10.jpg"  alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+<script>
+    const btnBack = document.querySelector('.btn-back');
+    const btnForward = document.querySelector('.btn-forward');
+    const activeImage = document.querySelector('.active-image');
+    const image = document.querySelectorAll('.image');
+    var count = 0;
+    btnBack.addEventListener('click', clickBtnBack);
+    btnForward.addEventListener('click', clickBtnForward);
+    var linkImage = '';
+    console.log('image:', image)
+    function changeColor() {
+        if (count != 0) {
+            btnBack.style.background = "#e0e0d2"
+        }
+        if (count != 9) {
+            btnForward.style.background = "#e0e0d2"
+        }
+    }
+    function highlightActiveImage() {
+        for (let i = 0; i < image.length; i++) {
+            console.log(`image${i}:`, image[i])
+            console.log(`linkImage:`, count)
+            if (i == count) {
+                image[i].style.borderColor = "black";
+            }
+            else{
+                image[i].style.borderColor = "white";
+            }
+        }
+
+    }
+    function switchActiveImage() {
+        switch (count) {
+            case 0: 
+                linkImage = './image/1.jpg'
+                break;
+            case 1: 
+                linkImage = './image/2.jpg'
+                break;
+            case 2: 
+                linkImage = './image/3.jpg'
+                break;
+            case 3: 
+                linkImage = './image/4.jpg'
+                break;
+            case 4: 
+                linkImage = './image/5.jpg'
+                break;
+            case 5: 
+                linkImage = './image/6.jpg'
+                break;
+            case 6: 
+                linkImage = './image/7.jpg'
+                break;
+            case 7: 
+                linkImage = './image/8.jpg'
+                break;
+            case 8: 
+                linkImage = './image/9.jpg'
+                break;
+            case 9: 
+                linkImage = './image/10.jpg'
+                break;
+        }
+        activeImage.src = linkImage;
+        
+    }
+
+    function clickBtnBack() {
+        if (count > 0) {
+            count--;
+            console.log('count:', count);
+            switchActiveImage();
+            highlightActiveImage();
+            changeColor();
+            btnBack.style.background = "#e0e0d2"
+        } 
+        else{ 
+            btnBack.style.background = "#585854"
+            return;
+        }
+    }
+    function clickBtnForward() {
+        if (count < 9) {
+            count++;
+            console.log('count:', count);
+            switchActiveImage();
+            highlightActiveImage();
+            changeColor();
+            btnForward.style.background = "#e0e0d2"
+        } 
+        else { 
+            btnForward.style.background = "#585854"
+            return;
+        }
+    }
+    highlightActiveImage();
+</script>
+</html>
